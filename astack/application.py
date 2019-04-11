@@ -39,7 +39,9 @@ def linear_application(iterator, hdf5_file, function_definitions, append=True):
                 print("Writing over old dataset: {0}".format(dataset_name))
                 del hd5f_file[dataset_name]
                 locs.append(0)
-                hdf5_file.create_dataset(dataset_name, data=data, chunks=True, maxshape=((None,) + data.shape[1:]))
+                hdf5_file.create_dataset(dataset_name, data=data,
+                                         chunks=True,
+                                         maxshape=((None,) + data.shape[1:]))
                 hdf5_file[dataset_name].attrs["processed"] = 0
 
         min_value = min(locs)
