@@ -61,5 +61,10 @@ def linear_application(iterator, hdf5_file, function_definitions, append=True):
             dataset = hdf5_file[dataset_name]
             if dataset.attrs["processed"] > (number):
                 continue
-            dataset[number] = func(i, **function_kwargs)
+            try:
+                dataset[number] = func(i, **function_kwargs)
+            except Exception as e:
+                print("\003[31mEncountered error while running: {}\003[0m".format(dataset_name))
+                raise e
+
             dataset.attrs["processed"] = number
