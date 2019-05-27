@@ -26,7 +26,7 @@ def linear_application(iterator, hdf5_file, function_definitions, append=True):
         exists = dataset_name in hdf5_file
 
         if exists and append:
-            print("Appending to dataset: {0}:".format(dataset_name))
+            print("Appending to dataset: {0}".format(dataset_name))
             locs.append(hdf5_file[dataset_name].attrs["processed"])
 
             if hdf5_file[dataset_name].shape[0] < length:
